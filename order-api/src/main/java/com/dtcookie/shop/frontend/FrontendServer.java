@@ -159,14 +159,12 @@ private static void reportActualRevenue(Product product) {
 
     actualRevenueCounter.add(product.getPrice(), attributes);
 }
-}
+	    private static void reportAttemptedPurchases(Product product) {
+        Attributes attributes = Attributes.builder()
+        .put(AttributeKey.stringKey("product"), product.getName())
+        .put(AttributeKey.stringKey("user"), System.getenv("GITHUB_USER"))
+        .build();
 
-private static void attemptedPurchasesCounter(Product product) {
-    Attributes attributes = Attributes.builder()
-    .put(AttributeKey.stringKey("product"), product.getName())
-    .put(AttributeKey.stringKey("user"), System.getenv("GITHUB_USER"))
-    .build();
-
-    attemptedPurchasesCounter.add(product.getPrice(), attributes);
-}
+        attemptedPurchasesCounter.add(1, attributes);
+    }
 }
