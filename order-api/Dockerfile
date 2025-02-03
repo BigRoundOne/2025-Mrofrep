@@ -30,7 +30,7 @@ COPY --from=codemodules / /
 ENV LD_PRELOAD=/opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so
 
 # environment variable for collector
-# ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4318
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4318
 
 # environment variables to setup tracing
 ENV OTEL_SERVICE_NAME=order-api-${GITHUB_USER}
@@ -42,8 +42,8 @@ ENV OTEL_JAVA_GLOBAL_AUTOCONFIGURE_ENABLED=true
 ENV OTEL_METRICS_EXPORTER=otlp
 ENV OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=DELTA
 ENV OTEL_EXPORTER_OTLP_METRICS_PROTOCOL=http/protobuf
-ENV OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://${DT_ENVIRONMENT_HOST}/api/v2/otlp/v1/metrics
-ENV OTEL_EXPORTER_OTLP_METRICS_HEADERS="Authorization=Api-Token ${DT_API_TOKEN}"
+# ENV OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://${DT_ENVIRONMENT_HOST}/api/v2/otlp/v1/metrics
+# ENV OTEL_EXPORTER_OTLP_METRICS_HEADERS="Authorization=Api-Token ${DT_API_TOKEN}"
 
 ARG GITHUB_USER
 WORKDIR /app
