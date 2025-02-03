@@ -40,6 +40,7 @@ public class FrontendServer {
     private static final LongCounter expectedRevenueCounter = meter.counterBuilder("shop.revenue.expected").setDescription("Expected revenue in dollar").build();
 	private static final LongCounter actualRevenueCounter = meter.counterBuilder("shop.revenue.actual").setDescription("Actual revenue in dollar").build();
 	private static final Tracer tracer = openTelemetry.getTracer("manual-instrumentation");
+	private static final LongCounter attemptedPurchasesCounter = meter.counterBuilder("shop.purchases.attempted").setDescription("Attempted number of purchases").build();
 
 
 	public static void main(String[] args) throws Exception {
@@ -156,6 +157,16 @@ private static void reportActualRevenue(Product product) {
     .put(AttributeKey.stringKey("user"), System.getenv("GITHUB_USER"))
     .build();
 
-    actualRevenueCounter.add(product.getPrice(), attributes);       
+    actualRevenueCounter.add(product.getPrice(), attributes);
+}
+}
+
+private static void attemptedPurchasesCounter(Product product) {
+    Attributes attributes = Attributes.builder()
+    .put(AttributeKey.stringKey("product"), product.getName())
+    .put(AttributeKey.stringKey("user"), System.getenv("GITHUB_USER"))
+    .build();
+
+    attemptedPurchasesCounter.add(product.getPrice(), attributes);
 }
 }
