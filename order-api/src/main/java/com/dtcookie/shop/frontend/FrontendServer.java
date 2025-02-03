@@ -153,6 +153,7 @@ public class FrontendServer {
 	private static void reportActualRevenue(Product product) {
 		Attributes attributes = Attributes.builder()
         .put(AttributeKey.stringKey("product"), product.getName())
+	.put(AttributeKey.stringKey("user"), System.getenv("GITHUB_USER"))
         .build();
 		
 		actualRevenueCounter.add(product.getPrice(), attributes);		
