@@ -34,11 +34,11 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [debug]
+      exporters: [debug,otlphttp]
     metrics:
       receivers: [otlp]
-      processors: [batch]
-      exporters: [debug]
+      processors: [batch, metricstransform, filter]
+      exporters: [debug, otlphttp]
   #telemetry:
   #  logs:
   #    level: debug
