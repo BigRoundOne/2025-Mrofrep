@@ -42,7 +42,7 @@ ENV OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=https://${DT_ENVIRONMENT_HOST}/api/v2/ot
 ENV OTEL_EXPORTER_OTLP_METRICS_HEADERS=Authorization="Api-Token ${DT_API_TOKEN}"
 
 # environment variable for collector
-#ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4318
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4318
 
 # environment variables to setup logs
 #ENV OTEL_LOGS_EXPORTER=otlp
