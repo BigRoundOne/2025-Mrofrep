@@ -43,6 +43,6 @@ service:
       receivers: [otlp]
       processors: [batch]
       exporters: [debug, otlphttp]
-  #telemetry:
-  #  logs:
-  #    level: debug
+  telemetry:
+    logs:
+      level: debug
