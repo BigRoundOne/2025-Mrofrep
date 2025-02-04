@@ -10,10 +10,10 @@ processors:
   batch:
   metricstransform:
     transforms:
-      - include: ^jvm\.(.*)$$
+      - include: ^shop\.(.*)$$
         match_type: regexp
         action: update
-        new_name: ${GITHUB_USER}.otel.jvm.$${1}
+        new_name: ${GITHUB_USER}.otel.shop.$${1}
   filter:
     metrics:
       exclude:
